@@ -50,8 +50,9 @@
         var tbkhuyenmai = "";
         var giatriKhuyenMai = "";
         var tongtienlayout = 0;
-
+         
         function AddToCart(MaSach) {
+            debugger;
             //lay controller kiem tra  dang trong gio hang k
             var ktController = '@ViewContext.RouteData.Values["Controller"].ToString()';
             var ChiTietSoLuong = 0;
@@ -68,7 +69,8 @@
                 success: function (data) {
 
                     $("#Cart_Amount").html(data.ItemAmount);
-
+                    if (data.ktTonKho == 1)
+                        alert('Số lượng hàng đặt lớn hơn trong kho!!!');
                     if (ktController == "GioHang")//kiem tra dang trong gio hang thi cap nhat
                         capNhatGiohang();
                 }
@@ -217,7 +219,10 @@
                 url: '/GioHang/CapNhat',
                 data: { id: Id, sl: soluong },
                 success: function (data) {
+
                     $("#Cart_Amount").html(data.sl);    //sl navbar
+                    if (data.ktTonKho == 1)
+                        alert('Lỗi. Số lượng hàng đặt lớn hơn trong kho!!!');
                     $.post(data.Url, function (partial) {
                         $("#GioHang").html(partial);
                         //AddToCart(-1);
@@ -380,7 +385,7 @@
                                 {
                                     KhachHang kh = Session["TaiKhoan"] as KhachHang;
                                     <li class="dropdown dropdown-small">
-                                        <a class="zoomhover"><span class="key"><i class="fa fa-user "></i>  Xin chào: @kh.TaiKhoan @*@User.Identity.Name*@</span></a>
+                                        <a href="/NguoiDung/Details/@kh.MaKH" class="zoomhover"><span class="key"><i class="fa fa-user "></i>  Xin chào: @kh.TaiKhoan </span></a>
                                     </li>
 
                                     <li class="dropdown dropdown-small">
@@ -432,7 +437,7 @@
                                         <div class="single-sidebar">
                                             <form action="/TimKiem/Index" method="post">
                                                 <input id="txtTimKiem" name="txtTimKiem" style="float:left;margin-top:10px;margin-left:20px;margin-right:10px;width:auto" type="text" placeholder="Tìm Sách, NXB, CĐ...">
-                                                <input @*onclick="Search('1')"*@ class="zoomhover" style="outline:none;background-color:transparent;background-image:url('/content/HinhAnh/toolbar_find.png');background-size:contain;background-repeat:no-repeat; position:absolute; top:20px;left:180px; width:10px; height:10px; " type="submit" />
+                                                <input class="zoomhover" style="outline:none;background-color:transparent;background-image:url('/content/HinhAnh/toolbar_find.png');background-size:contain;background-repeat:no-repeat; position:absolute; top:20px;left:180px; width:10px; height:10px; " type="submit" />
 
                                             </form>
                                         </div>
@@ -512,7 +517,7 @@
             <div class="zigzag-bottom"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-4 col-sm-6">
                         <div class="footer-about-us">
                             <h2>Vina<span>Book</span></h2>
                             <p>Vinabook.com ra đời vào tháng 12/2010 với hình thức kinh doanh Mua hàng online – Giao hàng tận nơi. Với mô hình nhà sách trên mạng, cho phép độc giả dễ dàng tìm sách & mua sách online. Đến nay Vinabook.com đã có hơn 70,000 đầu sách phục vụ cho độc giả cả nước. Chỉ cần truy cập website Vinabook.com và mua sách qua mạng, quý khách sẽ được giao sách tới tận nơi miễn phí khi đặt đơn hàng từ 90,000đ trong phạm vi Tp. Hồ Chí Minh & từ 180,000đ đối các tỉnh / thành phố khác.</p>
@@ -525,7 +530,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-4 col-sm-6">
                         <div class="footer-menu">
                             <h2 class="footer-wid-title">Facebook </h2>
 
@@ -533,7 +538,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6">
+                    @*<div class="col-md-3 col-sm-6">
                         <div class="footer-menu">
                             <h2 class="footer-wid-title">Google Plus</h2>
 
@@ -543,9 +548,9 @@
                             <!-- Place this tag where you want the widget to render. -->
                             <div class="g-person" data-width="260" data-href="//plus.google.com/u/0/105293475338510472690" data-rel="author"></div>
                         </div>
-                    </div>
+                    </div>*@
 
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-4 col-sm-6">
                         <div class="footer-newsletter">
                             <h2 class="footer-wid-title">Đăng ký nhận email</h2>
                             <p>

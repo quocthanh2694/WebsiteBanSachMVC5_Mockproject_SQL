@@ -320,9 +320,6 @@
     <Compile Include="Controllers\TacGiaController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="CustomHelpers\CustomDropdDownList.cs" />
-    <Compile Include="Models\Admin.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Adminnistrator.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
@@ -375,6 +372,8 @@
     <Content Include="Scripts\jasny-bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -410,9 +409,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuanTriVien.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Sach.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
@@ -447,7 +443,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\NguoiDung\Login.cshtml" />
     <Content Include="Views\NguoiDung\Register.cshtml" />
     <Content Include="Views\Sach\XemChiTiet.cshtml" />
@@ -532,6 +527,15 @@
     <Content Include="Views\QuanLyKhuyenMai\Edit.cshtml" />
     <Content Include="Views\QuanLyKhuyenMai\Details.cshtml" />
     <Content Include="Views\QuanLyKhuyenMai\Delete.cshtml" />
+    <Content Include="Scripts\jquery-2.2.1.min.map" />
+    <Content Include="Views\aaaaaaaaaaaaaaaa\Create.cshtml" />
+    <Content Include="Views\aaaaaaaaaaaaaaaa\Delete.cshtml" />
+    <Content Include="Views\aaaaaaaaaaaaaaaa\Details.cshtml" />
+    <Content Include="Views\aaaaaaaaaaaaaaaa\Edit.cshtml" />
+    <Content Include="Views\aaaaaaaaaaaaaaaa\Index.cshtml" />
+    <Content Include="Views\NguoiDung\Details.cshtml" />
+    <Content Include="Views\QuanLyKH\TimKiemKH.cshtml" />
+    <Content Include="Views\QuanLySach\TimKiemSach.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

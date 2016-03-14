@@ -14,6 +14,12 @@ namespace Vinabook
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+    name: "Info",
+    url: "Thong-Tin-Ca-Nhan",
+    defaults: new { controller = "NguoiDung", action = "Details", id = UrlParameter.Optional }
+);
+
+            routes.MapRoute(
                 name: "login",
                 url: "dang-nhap-he-thong",
                 defaults: new { controller = "Admin", action = "Login" }

@@ -60,7 +60,7 @@ namespace Vinabook.Controllers
                 var Sachs = (from s in db.Saches
                              where s.MaSach == item.MaSach
                              select s).ToList();
-                foreach(var iteamsach in Sachs)
+                foreach (var iteamsach in Sachs)
                 {
                     listSach.Add(iteamsach);
                 }
@@ -117,17 +117,31 @@ namespace Vinabook.Controllers
             }
             //ChuDe cd = db.ChuDes.Single(n => n.MaChuDe == sach.MaChuDe);
             //ViewBag.TenCD = cd.TenChuDe;
+            List<TacGia> listTG = new List<TacGia>();
+            var listThamGia = from s in db.ThamGias
+                              where s.MaSach == MaSach
+                              select s;
+            foreach (var Tacgiatg in listThamGia)
+            {
 
+                var listtacgia = from s in db.TacGias
+                                 where s.MaTacGia == Tacgiatg.MaTacGia
+                                 select s;
+
+                listTG.Add((TacGia)listtacgia.FirstOrDefault());
+            }
+
+            ViewBag.listTacGia = listTG;
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == sach.MaChuDe).TenChuDe;
             ViewBag.NhaXuatBan = db.NhaXuatBans.Single(n => n.MaNXB == sach.MaNXB).TenNXB;
             return View(sach);
         }
-    
+
         public ActionResult sachCungChuDePartial(int machude)
         {
             int id = Convert.ToInt16(TempData["MaChuDe"]);
-           
-            var listsach = db.Saches.Where(n=>n.MaChuDe== machude).Take(10).ToList();
+
+            var listsach = db.Saches.Where(n => n.MaChuDe == machude).Take(10).ToList();
             return PartialView(listsach);
         }
         public PartialViewResult SachGanDayPartial()
@@ -135,13 +149,24 @@ namespace Vinabook.Controllers
             var lstSachMoi = db.Saches.OrderBy(x => x.NgayCapNhat).ToList();
             return PartialView(lstSachMoi);
         }
+
         [HttpPost]
         public JsonResult AddToCart(int? id, int chiTietSl)
         {
+            int cartcount = 0;// đếm số hàng trong giỏ
+            int ktTonKho = 0;// =0 sl đặt > sl tồn
             List<CartItem> listCartItem;
+            Sach sach = db.Saches.Find(id);
+
             //Process Add To Cart
             if (Session["ShoppingCart"] == null)
             {
+                //Kiểm tra số lượng đặt > số lượng tồn
+                if (chiTietSl > sach.SoLuongTon)
+                {
+                    ktTonKho = 1;
+                    goto Count;
+                }
                 //Create New Shopping Cart Session
                 listCartItem = new List<CartItem>();
                 listCartItem.Add(new CartItem { Quality = chiTietSl, productOrder = db.Saches.Find(id) });
@@ -149,30 +174,41 @@ namespace Vinabook.Controllers
             }
             else
             {
-                bool flag = false;
                 listCartItem = (List<CartItem>)Session["ShoppingCart"];
                 foreach (CartItem item in listCartItem)
                 {
                     if (item.productOrder.MaSach == id)
                     {
+                        if (item.Quality + chiTietSl > sach.SoLuongTon)
+                        {
+                            ktTonKho = 1;
+                            goto Count;
+                        }
                         item.Quality += chiTietSl;
-                        flag = true;
+                        goto Count;
                         break;
                     }
                 }
-                if (!flag)
+                if (chiTietSl > sach.SoLuongTon)
+                {
+                    ktTonKho = 1;
+                    goto Count;
+                }
+                else
                     listCartItem.Add(new CartItem { Quality = chiTietSl, productOrder = db.Saches.Find(id) });
                 Session["ShoppingCart"] = listCartItem;
             }
 
             //Count item in shopping cart
-            int cartcount = 0;
+        Count:
             List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
-            foreach (CartItem item in ls)
-            {
-                cartcount += item.Quality;
-            }
-            return Json(new { ItemAmount = cartcount });
+            if (ls != null)
+                foreach (CartItem item in ls)
+                {
+                    cartcount += item.Quality;
+                }
+            return Json(new { ItemAmount = cartcount, ktTonKho = ktTonKho });
         }
+        
     }
 }

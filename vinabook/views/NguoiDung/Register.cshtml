@@ -30,6 +30,7 @@
         </div>
     </div>
 </div>
+@*<a onclick="KiemTra()">aaaaaaaaaaaaaaaaaaaaa</a>*@
 <div class="register-container container">
     <div class="row">
         <div class="iphone span5">
@@ -37,11 +38,13 @@
         </div>
         <div class="register span6">
             <form action="" id='input_form' method="post">
+@*@using (Html.BeginForm("Register", "NguoiDung", FormMethod.Post))
+{*@
+                @*@Html.AntiForgeryToken()*@
                 <fieldset>
                     <h2>REGISTER TO <span class="red"><strong>VINABOOK</strong></span></h2>
-
-
-
+                    <h4 class="red">@ViewBag.thanhcong</h4>
+                    @*@Html.ValidationSummary(true, "", new { @class = "text-danger red" })*@
                     <div class="form-group">
                         @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -52,7 +55,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.NgaySinh, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <input type="date" class="form-control required" id="NgaySinh" name="NgaySinh" max="2015-12-30">
+                            <input type="date" class="form-control required" id="NgaySinh" name="NgaySinh" >
                         </div>
                         <span id="loiNgaySinh"></span>
                     </div>
@@ -78,8 +81,10 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.TaiKhoan, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                <input type="text" value="" name="TaiKhoan" id="TaiKhoan" size="25" class="required form-control" placeholder="Tài khoản..." />
+                                <input @*onkeypress="KiemTra()"*@ type="text" value="" name="TaiKhoan" id="TaiKhoan" size="25" class="required form-control" placeholder="Tài khoản..." />
+                                @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
                             </div>
+                            <h4 class="red">@ViewBag.thongbao</h4>
                         </div>
 
                         <div class="form-group">
@@ -89,16 +94,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="cpassword" class="control-label col-md-3">Nhập lại mật khẩu :</label>
+                            <label for="password" class="control-label col-md-3">Nhập lại mật khẩu :</label>
                             <div class="col-md-6">
-                                <input type="password" value="" name="cpassword" id="cpassword" size="25" equalTo="#MatKhau" class="form-control" placeholder="Nhập lại mật khẩu..." />
+                                <input  type="password" value="" name="cpassword" id="cpassword" size="25"  class="form-control" placeholder="Nhập lại mật khẩu..." />
                             </div>
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                <input type="email" value="" name="Email" id="Email" size="25" class="required form-control" placeholder="Email..." />
+                                <input type="email" value="" name="Email" id="Email" size="25" class="required form-control"  placeholder="Email..." />
                             </div>
                         </div>
 
@@ -116,6 +121,7 @@
                         </div>
                 </fieldset>
             </form>
+}
 
             </div>
         </div>
@@ -126,6 +132,7 @@
     <script src="~/Content/Register/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Content/Register/js/jquery.backstretch.min.js"></script>
     <script src="~/Content/Register/js/scripts.js"></script>
+
 <script>
     var date = new Date();
 
@@ -138,12 +145,32 @@
 
     var today = year + "-" + month + "-" + day;
     document.getElementById("NgaySinh").value = today;
-</script>
-<script>
-		$(document).ready(function(){
+
+ 
+    
+    //function KiemTra() {
+      
+    //    //var nameInput = document.getElementById("TaiKhoan").value;
+    //    var nameInput = "";
+    //    $.ajax({
+            
+    //        type: 'POST',
+    //        url: '/NguoiDung/KiemTraTK',
+    //        data: { name:nameInput },
+    //        success: function (data) {
+    //            //if (data.tb == 1)
+    //                alert('Tài khoản này đã tồn tại');
+                
+    //        }
+    //    });
+        
+    //}
+
+    $(document).ready(function () {
 		    var validator = $("#input_form").validate({
 		        rules: {
 		            username: "required",
+		          
 		            password: {
 		                required: true,
 		                minlength: 6,
@@ -188,7 +215,7 @@
 		            //    required: "Hãy nhập địa chỉ email",
 		            //    Email: "Địa chỉ email không hợp lệ"
 		            //},
-		            
+		            TaiKhoanTrung: "Tên tài khoản đã tồn tại.",
 		            DiaChi: "Hãy điền địa chỉ.",
                     DienThoai: "Hãy điền số điện thoại.",
                     
@@ -204,6 +231,9 @@
 </script> 
 <style>
     /*các thông báo lỗi sẽ được chứa trong các label với class là error*/
+    red{
+        color:red;
+    }
     label.error {
         color: red;
     }

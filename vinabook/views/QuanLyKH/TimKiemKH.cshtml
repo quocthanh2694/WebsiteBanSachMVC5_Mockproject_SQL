@@ -1,13 +1,10 @@
-﻿@using PagedList.Mvc;
-@using PagedList;
+﻿@using PagedList;
+@using PagedList.Mvc;
 @model PagedList.PagedList<Vinabook.Models.KhachHang>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TimKiemKH";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-
 
 
 <div class="container">
@@ -31,8 +28,8 @@
         <thead>
             <tr>
                 @*<th>
-                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaKH)</span>
-                </th>*@
+                        <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaKH)</span>
+                    </th>*@
                 <th>
                     <span class="text-primary">@Html.DisplayNameFor(model => model.First().HoTen)</span>
                 </th>
@@ -73,8 +70,8 @@
             {
                 <tr>
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.MaKH)
-                    </td>*@
+                            @Html.DisplayFor(modelItem => item.MaKH)
+                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.HoTen)
                     </td>
@@ -101,16 +98,16 @@
                     </td>
                     <td>
                         @*@Html.ActionLink("Edit", "Edit", new { @MaKH = item.MaKH }) |
-                        @Html.ActionLink("Details", "Details", new { @MaKH = item.MaKH }) |
-                        @Html.ActionLink("Delete", "Delete", new { @MaKH = item.MaKH })*@
+                            @Html.ActionLink("Details", "Details", new { @MaKH = item.MaKH }) |
+                            @Html.ActionLink("Delete", "Delete", new { @MaKH = item.MaKH })*@
                         <a href="@Url.Action("Edit", new { @MaKH=item.MaKH})" class="btn btn-warning btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>
                     <td>
                         @*<a href="@Url.Action("Details", new { @MaKH=item.MaKH})" class="btn btn-primary btn-sm btn-color-primary">
-                            <i class="glyphicon glyphicon-eye-open"></i>
-                        </a>*@
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                            </a>*@
                         <a onclick="ChiTietKH('@item.MaKH')" class="btn btn-primary btn-sm btn-color-primary"><i class="glyphicon glyphicon-list-alt"></i></a>
                     </td>
                     <td>
@@ -126,7 +123,7 @@
 @* Tạo link liên kết các trang*@
 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
 <div class="MenuTrang">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    @Html.PagedListPager(Model, page => Url.Action("TimKiemKH", new { page = page }))
 </div>
 <style>
     .MenuTrang li {
@@ -136,23 +133,23 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
 <script>
 
     function ChiTietKH(makh) {
-            $.ajax({
-                type: 'POST',
-                url: '/QuanLyKH/XemCTKH',
-                data: {makh:makh},
-                success: function (data) {
-                    $.post(data.Url, function (partial) {
-                        $("#All_Dialog").html(partial)
-                    });
-                }
-            });
-            $('#myModal').on('shown.bs.modal', function () {
-                $(this).find('.modal-dialog').css({
-                    width: '800px',
-                    height: 'auto',
-                    'max-height': '100%'
+        $.ajax({
+            type: 'POST',
+            url: '/QuanLyKH/XemCTKH',
+            data: { makh: makh },
+            success: function (data) {
+                $.post(data.Url, function (partial) {
+                    $("#All_Dialog").html(partial)
                 });
+            }
+        });
+        $('#myModal').on('shown.bs.modal', function () {
+            $(this).find('.modal-dialog').css({
+                width: '800px',
+                height: 'auto',
+                'max-height': '100%'
             });
+        });
         $("#myModal").modal();
     }
 </script>
@@ -176,3 +173,4 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
         </div>
     </div>
 </div>
+

@@ -42,16 +42,22 @@ namespace Vinabook.Models
             //[StringLength(30, MinimumLength = 6)]
             
             //[Remote("CheckUserName", "NguoiDung", "Tên đăng nhập đã tồn tại")]
-            [Required()]
+            [Required]
             
             public string TaiKhoan { get; set; }
 
 
             [Display(Name = "Mật khẩu")]
             [DataType(DataType.Password)]
+
             //[StringLength(255, MinimumLength = 8)]
             [Required()]
             public string MatKhau { get; set; }
+
+            //[DataType(DataType.Password)]
+            //[Display(Name = "Xác nhận mật khẩu")]
+            //[Compare("MatKhau", ErrorMessage = "Mật khẩu không trùng khớp")]
+            //public string XacNhanMatKhau { get; set; }
 
 
             [Display(Name = "Email")]

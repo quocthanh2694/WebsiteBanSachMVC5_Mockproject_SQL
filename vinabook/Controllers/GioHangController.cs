@@ -131,6 +131,8 @@ namespace Vinabook.Controllers
         [HttpPost]
         public ActionResult CapNhat(int id, int sl)
         {
+            int ktTonKho=0;
+            Sach sach = db.Saches.Find(id);
             List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
             //nếu người dùng thêm hàng vào giỏ và lại trở về trang chủ thêm hàng tiếp 
             //thì session shoppingcart này có đang giữ tất cả sách trong giỏ hàng hiện tại hay không ?
@@ -140,7 +142,12 @@ namespace Vinabook.Controllers
             {
                 if (item.productOrder.MaSach == id)
                 {
-                    item.Quality = sl;
+                    if(sl > sach.SoLuongTon)
+                    {
+                        ktTonKho = 1;
+                    }
+                    else
+                        item.Quality = sl;
                     // break;
 
                 }
@@ -148,7 +155,7 @@ namespace Vinabook.Controllers
             }
             Session["ShoppingCart"] = listCartItem;
 
-            return Json(new { Url = Url.Action("Success"), sl = cartcount });
+            return Json(new { Url = Url.Action("Success"), sl = cartcount, ktTonKho=ktTonKho });
         }
         [HttpPost]
         public ActionResult Success()

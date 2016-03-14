@@ -51,6 +51,15 @@
                                 <div class="product-inner-price">
                                     <ins>@string.Format("{0:0,0}", Model.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", Model.GiaBan + (10 * Model.GiaBan / 100))</del>
                                 </div>
+                                @if (Model.SoLuongTon < 1)
+                                {
+                                    <div><strong style="color:red">Hết Hàng</strong> </div>
+                                }
+                                else
+                                {
+                                    <div>Còn: <strong style="color: red"> @Model.SoLuongTon quyển</strong></div>
+                                }
+                                <br />
 
                                 @*Them vao gio hang*@
                                 <div class="quantity">
@@ -61,6 +70,13 @@
 
                                 <div class="product-inner-category">
                                     <p>Nhà xuất bản: <a href="">@ViewBag.NhaXuatBan</a>. Tags: <a href="">sale</a>, <a href="">book</a>. </p>
+                                    <p>Tác giả: </p>
+                                    @foreach (var item in (List<TacGia>)ViewBag.listTacGia)
+                                    {
+                                        <i class="fa fa-angle-right"></i>
+                                        <a>@item.TenTacGia</a>
+                                        <br />
+                                    }
                                 </div>
 
                                 <div role="tabpanel">

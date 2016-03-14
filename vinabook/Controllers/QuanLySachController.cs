@@ -175,5 +175,36 @@ namespace Vinabook.Controllers
             return RedirectToAction("Index");
 
         }
+        [HttpGet]
+        public ActionResult TimKiemSach(int? page, string Key)
+        {
+            ViewBag.Key = Key;
+            List<Sach> lsKQTK = db.Saches.Where(n => n.TenSach.Contains(Key) || n.ChuDe.TenChuDe.Contains(Key) || n.NhaXuatBan.TenNXB.Contains(Key)).ToList();
+            ViewBag.TuKhoa = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.Saches.OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult TimKiemSach(FormCollection f, int? page)//string txtTimKiem,int ?page)
+        {
+            string Key = f["txtTimKiem"].ToString();
+            List<Sach> lsKQTK = db.Saches.Where(n => n.TenSach.Contains(Key) || n.ChuDe.TenChuDe.Contains(Key) || n.NhaXuatBan.TenNXB.Contains(Key)).ToList();
+
+            ViewBag.Key = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.Saches.OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
+        }
     }
 }
