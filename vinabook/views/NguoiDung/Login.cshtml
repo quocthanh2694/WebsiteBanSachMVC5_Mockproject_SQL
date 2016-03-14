@@ -19,32 +19,28 @@
             <input type="text" placeholder="username" name="username"><br>
             <input type="password" placeholder="password" name="password"><br>
             <input style="display:none" name="urlString" value="@Request.UrlReferrer" />
-            @*<input type="button" value="Login">*@
-            <button type="submit" class="btnsubmit">Đăng nhập</button>
-            @*<input type="button" class="btnsubmit" value="dag nhap"/>*@
-            
+            <button type="submit" class="btnsubmit">Đăng Nhập</button>
+            <br />
+            <a class="DangKyStyle center-block" href="/NguoiDung/Register"> Đăng Ký </a>
         </div>
     </form>
 
-@*@ViewBag.ThongBao
-    <form class="form-horizontal" action="@Url.Content("/NguoiDung/Login/")" method="post">
-        <fieldset>
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
-                <input type="text" class="form-control" name="username" placeholder="username">
-            </div>
-            <div class="clearfix"></div><br>
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                <input type="password" class="form-control" name="password" placeholder="password">
-            </div>
-            <div class="clearfix"></div>
-            <div class="input-prepend">
-                <label class="remember" for="remember"><input type="checkbox" id="remember"> Remember me</label>
-            </div>
-            <div class="clearfix"></div>
-            <p class="center col-md-5">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </p>
-        </fieldset>
-    </form>*@
+
+
+<style>
+    .DangKyStyle {
+       text-decoration:none;
+        width: 250px;
+        height: 35px;
+        background: #fff;
+        border: 1px solid #fff;
+        cursor: pointer;
+        border-radius: 2px;
+        color:#a18d6c;
+        font-family: 'Exo', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 5px;
+        margin-top: 30px;
+    }
+</style>

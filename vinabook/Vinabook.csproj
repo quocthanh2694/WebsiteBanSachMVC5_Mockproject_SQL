@@ -528,11 +528,6 @@
     <Content Include="Views\QuanLyKhuyenMai\Details.cshtml" />
     <Content Include="Views\QuanLyKhuyenMai\Delete.cshtml" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
-    <Content Include="Views\aaaaaaaaaaaaaaaa\Create.cshtml" />
-    <Content Include="Views\aaaaaaaaaaaaaaaa\Delete.cshtml" />
-    <Content Include="Views\aaaaaaaaaaaaaaaa\Details.cshtml" />
-    <Content Include="Views\aaaaaaaaaaaaaaaa\Edit.cshtml" />
-    <Content Include="Views\aaaaaaaaaaaaaaaa\Index.cshtml" />
     <Content Include="Views\NguoiDung\Details.cshtml" />
     <Content Include="Views\QuanLyKH\TimKiemKH.cshtml" />
     <Content Include="Views\QuanLySach\TimKiemSach.cshtml" />
