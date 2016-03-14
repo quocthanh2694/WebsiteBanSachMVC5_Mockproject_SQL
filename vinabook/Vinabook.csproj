@@ -352,6 +352,7 @@
     <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Web.config" />
     <EntityDeploy Include="Models\QuanLyBanSachModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QuanLyBanSachModel.Designer.cs</LastGenOutput>
@@ -377,8 +378,13 @@
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -531,12 +537,6 @@
     <Content Include="Views\NguoiDung\Details.cshtml" />
     <Content Include="Views\QuanLyKH\TimKiemKH.cshtml" />
     <Content Include="Views\QuanLySach\TimKiemSach.cshtml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
