@@ -17,6 +17,7 @@ namespace Vinabook.Controllers
         // GET: QuanLySach
         QuanLyBanSachEntities db = new QuanLyBanSachEntities();
         
+        //test
         public ActionResult Index(int? page)
         {
             int pageNumber = (page ?? 1);
