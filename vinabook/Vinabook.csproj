@@ -352,7 +352,6 @@
     <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Views\QuanLySach\Index.cshtml" />
     <Content Include="Web.config" />
     <EntityDeploy Include="Models\QuanLyBanSachModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -380,6 +379,7 @@
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\QuanLySach\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
