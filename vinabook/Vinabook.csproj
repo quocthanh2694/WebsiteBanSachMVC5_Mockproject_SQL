@@ -474,6 +474,7 @@
     <Content Include="Views\QuanLyChuDe\Details.cshtml" />
     <Content Include="Views\QuanLyChuDe\Edit.cshtml" />
     <Content Include="Views\QuanLyNXB\Index.cshtml" />
+    <Content Include="Index.cshtml" />
     <Content Include="Views\QuanLyNXB\Create.cshtml" />
     <Content Include="Views\QuanLyNXB\Delete.cshtml" />
     <Content Include="Views\QuanLyNXB\Details.cshtml" />

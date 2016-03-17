@@ -54,8 +54,8 @@ namespace Vinabook.Controllers
                 //Lưu tên file
                 var fileName = Path.GetFileName(fileUpload.FileName);
                 //Lưu đường dẫn của file
-                var path = Path.Combine(Server.MapPath("~/Content/HinhAnhSP"), fileName);
-                //Kiểm tra hình ảnh đã tồn tại chưa
+                var path = Path.Combine(Server.MapPath("~/Content/HinhAnhSP"), fileName); 
+                //Kiểm tra hình ảnh đã tồn tại chưa  
                 if (System.IO.File.Exists(path))
                 {
                     ViewBag.ThongBao = "Hình ảnh đã tồn tại";
