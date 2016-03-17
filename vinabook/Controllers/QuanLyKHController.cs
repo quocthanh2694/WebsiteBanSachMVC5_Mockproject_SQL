@@ -34,7 +34,7 @@ namespace Vinabook.Controllers
         [ValidateInput(false)]
         public ActionResult Create(KhachHang kh)
         {
-            //Thêm vào cơ sở dữ liệu
+            //Thêm vào cơ sở dữ liệu  
             if (ModelState.IsValid)
             {
                 db.KhachHangs.Add(kh);
