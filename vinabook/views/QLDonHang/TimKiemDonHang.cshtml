@@ -1,12 +1,12 @@
-﻿@using PagedList.Mvc;
-@using PagedList;
-@model PagedList.PagedList<Vinabook.Models.DonHang>
-
+﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TimKiemDonHang";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.PagedList<Vinabook.Models.DonHang>
 
 
 
@@ -26,7 +26,7 @@
 
     <div class=" row pull-left">
         <form action="/QLDonHang/TimKiemDonHang" method="post" style="width:300px">
-            <input id="txtTimKiem" name="txtTimKiem" placeholder="search" class="search-query form-control " style="width:200px"
+            <input id="txtTimKiem" name="txtTimKiem" placeholder=" search" class="search-query form-control " style="width:200px"
                    type="text">
         </form>
     </div>
@@ -94,9 +94,9 @@
                     </td>
                     <td>
                         @*@Html.ActionLink("Edit", "Edit", new { @madh = item.MaDonHang }) |
-                        @Html.ActionLink("Details", "Details", new { @madh = item.MaDonHang }) |
-                        @Html.ActionLink("Delete", "Delete", new { @MaDH = item.MaDonHang }) |
-                        @Html.ActionLink("Xem chi tiết đơn hàng", "XemCTDH", new { @madh = item.MaDonHang })*@
+                            @Html.ActionLink("Details", "Details", new { @madh = item.MaDonHang }) |
+                            @Html.ActionLink("Delete", "Delete", new { @MaDH = item.MaDonHang }) |
+                            @Html.ActionLink("Xem chi tiết đơn hàng", "XemCTDH", new { @madh = item.MaDonHang })*@
                         @*<a href="/QLDonHang/XemCTDH?madh=@item.MaDonHang" data-toggle="modal" data-target="#myModal">Xem chi tiết đơn hàng</a>*@
                         <a href="@Url.Action("Edit", new { @madh=item.MaDonHang})" class="btn btn-warning btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-edit"></i>
@@ -113,7 +113,7 @@
                         </a>
                     </td>
                     <td>
-                        <a onclick="ChiTietDonHang('@item.MaDonHang')" class="btn btn-info btn-sm btn-color-primary"><i class="glyphicon glyphicon-list-alt"></i></a>                                  
+                        <a onclick="ChiTietDonHang('@item.MaDonHang')" class="btn btn-info btn-sm btn-color-primary"><i class="glyphicon glyphicon-list-alt"></i></a>
                     </td>
                 </tr>
             }
@@ -156,7 +156,7 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
             </div>
             <div class="modal-body">
                 @* nội dung bên trong all_dialog *@
-               <div id="All_Dialog"></div>
+                <div id="All_Dialog"></div>
 
             </div>
             <div class="modal-footer">

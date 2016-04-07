@@ -115,7 +115,7 @@ namespace Vinabook.Controllers
         }
         public PartialViewResult XemCTDHPartial()
         {
-            int madh=(int)TempData["madh"];
+            int madh = (int)TempData["madh"];
             var lstCTDH = db.ChiTietDonHangs.Where(n => n.MaDonHang == madh).ToList();
             return PartialView(lstCTDH);
         }
@@ -155,6 +155,50 @@ namespace Vinabook.Controllers
 
             return View("MyView");
 
+        }
+        [HttpGet]
+        public ActionResult TimKiemDonHang(int? page, string Key)
+        {
+            int k=-1;
+            try
+            {
+                k = Convert.ToInt16(Key);
+            }
+            catch { }
+            ViewBag.Key = Key;
+            List<DonHang> lsKQTK = db.DonHangs.Where(n => n.MaDonHang == k || n.KhachHang.HoTen.Contains(Key)).ToList();
+            ViewBag.TuKhoa = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.DonHangs.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult TimKiemDonHang(FormCollection f, int? page)//string txtTimKiem,int ?page)
+        {
+            int k=-1;
+            string Key = f["txtTimKiem"].ToString();
+            try
+            {
+                k = Convert.ToInt16(Key);
+            }
+            catch { }
+            List<DonHang> lsKQTK = db.DonHangs.Where(n => n.MaDonHang == k || n.KhachHang.HoTen.Contains(Key)).ToList();
+
+
+            ViewBag.Key = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.DonHangs.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
         }
     }
 }

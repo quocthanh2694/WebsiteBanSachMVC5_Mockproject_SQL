@@ -167,6 +167,38 @@ namespace Vinabook.Controllers
             db.SaveChanges();
             return Json(new { Url = Url.Action("IndexPartial") });
         }
+        [HttpGet]
+        public ActionResult TimKiemChuDe(int? page, string Key)
+        {
+            ViewBag.Key = Key;
+            List<ChuDe> lsKQTK = db.ChuDes.Where(n => n.TenChuDe.Contains(Key)).ToList();
+            ViewBag.TuKhoa = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.Saches.OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaChuDe).ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult TimKiemChuDe(FormCollection f, int? page)//string txtTimKiem,int ?page)
+        {
+            string Key = f["txtTimKiem"].ToString();
+            List<ChuDe> lsKQTK = db.ChuDes.Where(n => n.TenChuDe.Contains(Key)).ToList();
+
+
+            ViewBag.Key = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.ChuDes.OrderBy(n => n.MaChuDe).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaChuDe).ToPagedList(pageNumber, pageSize));
+        }
 
     }
 }

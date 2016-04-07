@@ -317,6 +317,7 @@
     <Compile Include="Controllers\QuanLyKhuyenMaiController.cs" />
     <Compile Include="Controllers\QuanLyNXBController.cs" />
     <Compile Include="Controllers\QuanLySachController.cs" />
+    <Compile Include="Controllers\QuanLyTacGiaController.cs" />
     <Compile Include="Controllers\TacGiaController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="CustomHelpers\CustomDropdDownList.cs" />
@@ -380,6 +381,15 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\QuanLySach\Index.cshtml" />
+    <Content Include="Views\QuanLyChuDe\TimKiemChuDe.cshtml" />
+    <Content Include="Views\QuanLyNXB\TimKiemNXB.cshtml" />
+    <Content Include="Views\QLDonHang\TimKiemDonHang.cshtml" />
+    <Content Include="Views\QuanLyTacGia\Create.cshtml" />
+    <Content Include="Views\QuanLyTacGia\Delete.cshtml" />
+    <Content Include="Views\QuanLyTacGia\Details.cshtml" />
+    <Content Include="Views\QuanLyTacGia\Edit.cshtml" />
+    <Content Include="Views\QuanLyTacGia\Index.cshtml" />
+    <Content Include="Views\QuanLyTacGia\TimKiemTacGia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

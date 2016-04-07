@@ -130,5 +130,37 @@ namespace Vinabook.Controllers
             return RedirectToAction("Index");
 
         }
+        [HttpGet]
+        public ActionResult TimKiemNXB(int? page, string Key)
+        {
+            ViewBag.Key = Key;
+            List<NhaXuatBan> lsKQTK = db.NhaXuatBans.Where(n => n.TenNXB.Contains(Key)).ToList();
+            ViewBag.TuKhoa = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.NhaXuatBans.OrderBy(n => n.MaNXB).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaNXB).ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult TimKiemNXB(FormCollection f, int? page)//string txtTimKiem,int ?page)
+        {
+            string Key = f["txtTimKiem"].ToString();
+            List<NhaXuatBan> lsKQTK = db.NhaXuatBans.Where(n => n.TenNXB.Contains(Key)).ToList();
+
+
+            ViewBag.Key = Key;
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            if (lsKQTK.Count == 0)
+            {
+                ViewBag.ThongBao = "Không tìm thấy";
+                return View(db.NhaXuatBans.OrderBy(n => n.MaNXB).ToPagedList(pageNumber, pageSize));
+            }
+            return View(lsKQTK.OrderBy(n => n.MaNXB).ToPagedList(pageNumber, pageSize));
+        }
     }
 }

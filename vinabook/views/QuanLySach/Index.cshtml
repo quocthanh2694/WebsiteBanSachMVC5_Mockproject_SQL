@@ -8,21 +8,22 @@
 }
 
 <div class="container">
-    <div class=" row pull-left">
+    <div class="row pull-left">
         <a href="@Url.Action("ThemMoi")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Thêm sách</a>
     </div>
     <br />
     <p>&nbsp;</p>
 
-    <div class=" row pull-left">
+    <div class="row pull-left">
         <form action="/QuanLySach/TimKiemSach" method="post" style="width:300px">
-            <input id="txtTimKiem" name="txtTimKiem" placeholder=" search" class="search-query form-control " style="width:200px"
+            <input id="txtTimKiem" name="txtTimKiem" placeholder="search" class="search-query form-control " style="width:200px"
                    type="text">
         </form>
     </div>
     <br />
     <p>&nbsp;</p>
 </div>
+
 <div class="table-responsive">
     <table class="table table-condensed table-bordered table-striped table-hover">
         <thead>
@@ -129,6 +130,7 @@
     <div class="MenuTrang">
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
     </div>
+
     <style>
         .MenuTrang li {
             display: inline;
